@@ -86,7 +86,7 @@ export default {
   async asyncData({ params }) {
     const gcalId = params.event
     const event = await axios
-      .get('http://localhost:8000?gcal_id=' + gcalId)
+      .get('https://api.vrcec-viewer.rioil.dev?gcal_id=' + gcalId)
       .then((response) => {
         return response.data.events[0]
       })

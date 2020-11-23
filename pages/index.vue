@@ -133,7 +133,8 @@ export default {
       end = query.end
     }
 
-    const url = 'http://localhost:8000?start=' + start + '&end=' + end
+    const url =
+      'https://api.vrcec-viewer.rioil.dev?start=' + start + '&end=' + end
 
     return axios
       .get(url)
