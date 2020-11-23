@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - vrc-event-viewer',
-    title: 'vrc-event-viewer',
+    titleTemplate: '%s - VRChat Event Calendar Viewer',
+    title: 'VRChat Event Calendar Viewer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

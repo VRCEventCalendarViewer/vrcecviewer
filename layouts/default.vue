@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <h1>VRC Event Calendar Viewer</h1>
+      <h1>VRChat Event Calendar Viewer</h1>
       <Nuxt />
       <v-footer>
         <v-row justify="center" no-gutters>
@@ -26,7 +26,7 @@
               >
                 VRChatイベントカレンダー
               </a>
-              のデータを利用しています． 詳しくは，
+              のデータを利用しています． 詳しくは
               <NuxtLink to="/about">About</NuxtLink>
               ページをご確認ください．
             </small>

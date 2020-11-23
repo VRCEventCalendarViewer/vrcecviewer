@@ -184,6 +184,9 @@ export default {
       search: null,
     }
   },
+  head: {
+    title: 'Home',
+  },
 }
 </script>
 

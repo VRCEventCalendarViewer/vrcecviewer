@@ -83,5 +83,8 @@ export default {
   data() {
     return {}
   },
+  head: {
+    title: 'About',
+  },
 }
 </script>

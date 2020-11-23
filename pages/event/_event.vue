@@ -95,6 +95,9 @@ export default {
       })
     return { gcalId, event }
   },
+  head: {
+    title: 'イベント詳細',
+  },
 }
 </script>
 
