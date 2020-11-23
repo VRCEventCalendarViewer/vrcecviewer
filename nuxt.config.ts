@@ -17,7 +17,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/html_sanitize.ts', '~/plugins/auto_link.ts'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -59,11 +59,19 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extend(config: any, { isClient, _isServer }: any) {
+      if (isClient) {
+        config.node = {
+          fs: 'empty',
+        }
+      }
+    },
+  },
 
   // typescript configuration
   typescript: {
     typeCheck: true,
-    ignoreNotFoundWarnings: true
-  }
+    ignoreNotFoundWarnings: true,
+  },
 }
