@@ -17,7 +17,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/html_sanitize.ts', '~/plugins/auto_link.ts'],
+  plugins: [
+    '~/plugins/html_sanitize.ts',
+    '~/plugins/auto_link.ts',
+    '~/plugins/parse_genre.ts',
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

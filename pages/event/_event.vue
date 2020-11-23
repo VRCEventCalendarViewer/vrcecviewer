@@ -7,7 +7,19 @@
 
           <v-card-subtitle>
             {{ event.start }} ~ {{ event.end }}
-            {{ event.genre }}
+
+            <span class="tags-outside">
+              <span class="tags-inside">
+                <span
+                  v-for="genre in $parse_genre(event.genre)"
+                  :key="genre.name"
+                  class="genre-tag"
+                  :style="`background-color: ${genre.color};`"
+                >
+                  <small>{{ genre.name }}</small>
+                </span>
+              </span>
+            </span>
           </v-card-subtitle>
 
           <v-divider class="mx-3"></v-divider>
@@ -85,3 +97,21 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.genre-tag {
+  margin: 2px 4px 2px 0px;
+  padding: 0.5px 12px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.tags-outside {
+  display: flex;
+}
+
+.tags-inside {
+  margin-left: auto;
+}
+</style>
