@@ -69,7 +69,7 @@
               <template v-slot:item.genre="{ item }">
                 <span
                   v-for="genre in $parse_genre(item.genre)"
-                  :key="genre"
+                  :key="genre.name"
                   class="genre-tag"
                   :style="`background-color: ${genre.color};`"
                 >
