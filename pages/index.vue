@@ -116,15 +116,14 @@ export default {
   },
   asyncData({ _params, query }) {
     const now = new Date()
-    const endOfThisMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+    const oneWeekLater = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 8
+    )
 
-    let start = now.getFullYear() + '-' + (now.getMonth() + 1) + '-01'
-    let end =
-      endOfThisMonth.getFullYear() +
-      '-' +
-      (endOfThisMonth.getMonth() + 1) +
-      '-' +
-      endOfThisMonth.getDate()
+    let start = formatDate(now)
+    let end = formatDate(oneWeekLater)
 
     if ('start' in query) {
       start = query.start
@@ -181,13 +180,33 @@ export default {
           sortable: false,
         },
       ],
-      sortDesc: [true],
+      sortDesc: [false],
       search: null,
     }
   },
   head: {
     title: 'Home',
   },
+}
+
+function formatDate(date) {
+  return (
+    date.getFullYear() +
+    '-' +
+    zeroPadding(date.getMonth() + 1) +
+    '-' +
+    zeroPadding(date.getDate())
+    /* + ' ' +
+    zeroPadding(date.getHours()) +
+    ':' +
+    zeroPadding(date.getMinutes()) +
+    ':' +
+    zeroPadding(date.getSeconds()) */
+  )
+}
+
+function zeroPadding(str) {
+  return ('0' + str).slice(-2)
 }
 </script>
 
