@@ -78,7 +78,7 @@
               </template>
 
               <template v-slot:item.organizer="{ item }">
-                {{ $sanitize(item.organizer) }}
+                <div v-html="$sanitize(item.organizer)"></div>
               </template>
               <!--
               <template v-slot:item.link="{ item }">
@@ -91,9 +91,9 @@
               -->
 
               <template v-slot:item.details="{ item }">
-                <NuxtLink :to="`/event/${item.gcal_id}`"
-                  ><v-icon>mdi-book-open-outline</v-icon></NuxtLink
-                >
+                <NuxtLink :to="`/event/${item.gcal_id}`">
+                  <v-icon>mdi-book-open-outline</v-icon>
+                </NuxtLink>
               </template>
             </v-data-table>
           </v-card>
