@@ -54,7 +54,9 @@
             <v-card-title>問い合わせ先</v-card-title>
             <v-card-text>
               当サイトに関するお問い合わせは
-              <a href="https://twitter.com/rioil_dev">@rioil_dev</a>
+              <a href="https://twitter.com/rioil_dev" target="_blank">
+                @rioil_dev
+              </a>
               にお願いいたします．<br />
               <a
                 href="https://sites.google.com/view/vrchat-event"
@@ -63,7 +65,9 @@
                 VRChatイベントカレンダー
               </a>
               に登録されたイベントデータの内容の修正依頼等は，カッコウ様
-              <a href="https://twitter.com/nest_cuckoo_">@nest_cuckoo_</a>
+              <a href="https://twitter.com/nest_cuckoo_" target="_blank">
+                @nest_cuckoo_
+              </a>
               にお願いいたします．
             </v-card-text>
           </v-card>
