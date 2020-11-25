@@ -45,8 +45,26 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col cols="auto">Filter : </v-col>
+      <v-row align="center">
+        <v-col cols="auto">Filter</v-col>
+        <!--
+        <v-col cols="auto">
+          <v-switch v-model="andFilter" label="AND"></v-switch>
+        </v-col>-->
+        <v-col cols="auto">
+          <v-btn small class="filter-mode-btn" @click="toggleFilterMode">
+            <v-icon>
+              {{ andFilter ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off' }}
+            </v-icon>
+            {{ andFilter ? 'AND' : 'OR' }}
+          </v-btn>
+        </v-col>
+        <v-col cols="auto">
+          <v-btn small @click="resetFilter">
+            <v-icon small>mdi-delete</v-icon> Clear
+          </v-btn>
+        </v-col>
+
         <v-col cols="auto">
           <span
             v-for="genre in genres"
@@ -234,6 +252,7 @@ export default {
       sortDesc: [false],
       search: null,
       tagFlag: 0,
+      andFilter: true,
       genres: [
         {
           flag: 128,
@@ -290,6 +309,10 @@ export default {
     filteredEvents() {
       if (this.tagFlag === 0) {
         return this.events
+      } else if (this.andFilter) {
+        return this.events.filter((e) => {
+          return (e.genre & this.tagFlag) === this.tagFlag
+        })
       } else {
         return this.events.filter((e) => {
           return (e.genre & this.tagFlag) !== 0
@@ -301,6 +324,12 @@ export default {
     tag(tag) {
       // フラグ更新
       this.tagFlag ^= tag.flag
+    },
+    toggleFilterMode() {
+      this.andFilter = !this.andFilter
+    },
+    resetFilter() {
+      this.tagFlag = 0
     },
   },
 }
@@ -347,5 +376,8 @@ function zeroPadding(str) {
 .genre-not-selected {
   color: #222222;
   border: 1px solid;
+}
+.filter-mode-btn {
+  width: 6em;
 }
 </style>
