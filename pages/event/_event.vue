@@ -16,7 +16,7 @@
                   class="genre-tag"
                   :style="`background-color: ${genre.color};`"
                 >
-                  <small>{{ genre.name }}</small>
+                  <small class="genre-tag-text">{{ genre.name }}</small>
                 </span>
               </span>
             </span>
@@ -108,6 +108,13 @@ export default {
   border-radius: 5px;
   display: inline-block;
   margin-left: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.genre-tag-text {
+  color: #eeeeee;
 }
 
 .tags-outside {
