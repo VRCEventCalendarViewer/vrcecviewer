@@ -21,27 +21,25 @@
         -->
       <v-row align="center">
         <v-col cols="auto">
-          <v-text-field
-            v-model="startDate"
-            placeholder="Start Date"
-            single-line
-          >
+          <v-text-field v-model="start" placeholder="Start Date" single-line>
             <template #append-outer>
-              <date-picker v-model="startDate" />
+              <date-picker v-model="start" />
+            </template>
+          </v-text-field>
+        </v-col>
+
+        <v-col cols="auto">~</v-col>
+
+        <v-col cols="auto">
+          <v-text-field v-model="end" placeholder="End Date" single-line>
+            <template #append-outer>
+              <date-picker v-model="end" />
             </template>
           </v-text-field>
         </v-col>
 
         <v-col cols="auto">
-          <v-text-field v-model="endDate" placeholder="End Date" single-line>
-            <template #append-outer>
-              <date-picker v-model="endDate" />
-            </template>
-          </v-text-field>
-        </v-col>
-
-        <v-col cols="auto">
-          <v-btn :href="`/?start=${startDate}&end=${endDate}`">Update</v-btn>
+          <v-btn @click="updateData">Update</v-btn>
         </v-col>
       </v-row>
 
@@ -114,7 +112,7 @@
         <v-col cols="12">
           <v-card>
             <v-card-title>
-              Events ({{ startDate }} ~ {{ endDate }})
+              Events ({{ dataStart }} ~ {{ dataEnd }})
               <v-spacer></v-spacer>
               <v-text-field
                 v-model="search"
@@ -130,6 +128,8 @@
               :search="search"
               sort-by="start"
               :sort-desc="sortDesc"
+              :loading="loading"
+              loading-text="Loading..."
             >
               <template #item.genre="{ item }">
                 <span
@@ -207,7 +207,13 @@ export default {
     return axios
       .get(url)
       .then((response) => {
-        return { startDate: start, endDate: end, events: response.data.events }
+        return {
+          start,
+          end,
+          events: response.data.events,
+          dataStart: start,
+          dataEnd: end,
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -253,6 +259,7 @@ export default {
       search: null,
       tagFlag: 0,
       andFilter: true,
+      loading: false,
       genres: [
         {
           flag: 128,
@@ -330,6 +337,27 @@ export default {
     },
     resetFilter() {
       this.tagFlag = 0
+    },
+    async updateData() {
+      this.loading = true
+
+      this.dataStart = this.start
+      this.dataEnd = this.end
+
+      const url =
+        'https://api.vrcec-viewer.rioil.dev?start=' +
+        this.dataStart +
+        '&end=' +
+        this.dataEnd
+
+      this.events = await axios
+        .get(url)
+        .then((response) => response.data.events)
+        .catch((error) => {
+          console.log(error)
+        })
+
+      this.loading = false
     },
   },
 }
