@@ -28,7 +28,7 @@
             <v-card flat>
               <v-card-title>Organizer</v-card-title>
               <v-card-text>
-                {{ event.organizer }}
+                <div v-html="$sanitize($auto_link(event.organizer))"></div>
               </v-card-text>
             </v-card>
 
@@ -42,7 +42,7 @@
             <v-card flat>
               <v-card-title>Conditions</v-card-title>
               <v-card-text>
-                {{ event.conditions }}
+                <div v-html="$sanitize($auto_link(event.conditions))"></div>
               </v-card-text>
             </v-card>
 
