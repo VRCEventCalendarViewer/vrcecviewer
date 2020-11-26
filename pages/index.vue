@@ -177,14 +177,7 @@
               -->
 
               <template #item.details="{ item }">
-                <v-btn
-                  icon
-                  :to="`/event/${
-                    item.gcal_id
-                  }?start=${dataStart}&end=${dataEnd}&filter=${filter}&and=${Number(
-                    and
-                  )}`"
-                >
+                <v-btn icon :to="`/event/${item.gcal_id}?${backToQueryParams}`">
                   <v-icon>mdi-book-open-outline</v-icon>
                 </v-btn>
               </template>
@@ -354,6 +347,18 @@ export default {
           return (e.genre & this.filter) !== 0
         })
       }
+    },
+    backToQueryParams() {
+      return (
+        'start=' +
+        this.dataStart +
+        '&end=' +
+        this.dataEnd +
+        '&filter=' +
+        this.filter +
+        '&and=' +
+        Number(this.and)
+      )
     },
   },
   methods: {
