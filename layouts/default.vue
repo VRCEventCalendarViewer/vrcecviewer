@@ -17,6 +17,41 @@
             {{ link.name }}
           </v-btn>
 
+          <v-menu offset-y open-on-hover top>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                color="white"
+                text
+                rounded
+                class="my-2"
+                v-bind="attrs"
+                v-on="on"
+              >
+                Contact
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                href="https://forms.gle/TdjRg9goXDQTbhM49"
+                target="_blank"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>
+                    通常のお問い合わせ （Google Forms）
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item href="https://twitter.com/rioil_dev" target="_blank">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    緊急のお問い合わせ （Twitter DM）
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
           <v-col class="text-center" cols="12">
             <small>
               このサイトは

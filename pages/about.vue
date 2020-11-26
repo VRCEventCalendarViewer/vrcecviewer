@@ -53,11 +53,7 @@
           <v-card flat>
             <v-card-title>問い合わせ先</v-card-title>
             <v-card-text>
-              当サイトに関するお問い合わせは
-              <a href="https://twitter.com/rioil_dev" target="_blank">
-                @rioil_dev
-              </a>
-              にお願いいたします．<br />
+              当サイトに関するお問い合わせは，画面下部にあるCONTACTからお願いします．<br />
               <a
                 href="https://sites.google.com/view/vrchat-event"
                 target="_blank"
@@ -68,7 +64,7 @@
               <a href="https://twitter.com/nest_cuckoo_" target="_blank">
                 @nest_cuckoo_
               </a>
-              にお願いいたします．
+              にお願いします．
             </v-card-text>
           </v-card>
         </v-card-text>
