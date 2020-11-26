@@ -21,7 +21,13 @@
         -->
       <v-row align="center">
         <v-col cols="auto">
-          <v-text-field v-model="start" placeholder="Start Date" single-line>
+          <v-text-field
+            v-model="start"
+            placeholder="Start Date"
+            single-line
+            hide-details
+            readonly
+          >
             <template #append-outer>
               <date-picker v-model="start" />
             </template>
@@ -31,7 +37,13 @@
         <v-col cols="auto">~</v-col>
 
         <v-col cols="auto">
-          <v-text-field v-model="end" placeholder="End Date" single-line>
+          <v-text-field
+            v-model="end"
+            placeholder="End Date"
+            single-line
+            hide-details
+            readonly
+          >
             <template #append-outer>
               <date-picker v-model="end" />
             </template>
@@ -50,7 +62,12 @@
           <v-switch v-model="andFilter" label="AND"></v-switch>
         </v-col>-->
         <v-col cols="auto">
-          <v-btn small class="filter-mode-btn" @click="toggleFilterMode">
+          <v-btn
+            small
+            rounded
+            class="filter-mode-btn"
+            @click="toggleFilterMode"
+          >
             <v-icon>
               {{ andFilter ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off' }}
             </v-icon>
@@ -58,7 +75,7 @@
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn small @click="resetFilter">
+          <v-btn small rounded @click="resetFilter">
             <v-icon small>mdi-delete</v-icon> Clear
           </v-btn>
         </v-col>
@@ -160,9 +177,9 @@
               -->
 
               <template #item.details="{ item }">
-                <NuxtLink :to="`/event/${item.gcal_id}`">
+                <v-btn icon :to="`/event/${item.gcal_id}`">
                   <v-icon>mdi-book-open-outline</v-icon>
-                </NuxtLink>
+                </v-btn>
               </template>
             </v-data-table>
           </v-card>
