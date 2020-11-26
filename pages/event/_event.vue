@@ -65,7 +65,9 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn to="/"><v-icon>mdi-keyboard-backspace</v-icon> Back </v-btn>
+            <v-btn :to="backTo">
+              <v-icon>mdi-keyboard-backspace</v-icon> Back
+            </v-btn>
             <v-btn
               :href="`https://www.google.com/calendar/event?eid=${event.link}`"
               target="_blank"
@@ -83,8 +85,27 @@
 import axios from 'axios'
 
 export default {
-  async asyncData({ params }) {
-    const gcalId = params.event
+  async asyncData(context) {
+    const gcalId = context.params.event
+    const start = context.query.start
+    const end = context.query.end
+    const filter = context.query.filter
+    const and = context.query.and
+    let backTo = '/'
+
+    if (
+      context.$isString(start) &&
+      start &&
+      context.$isString(end) &&
+      end &&
+      context.$isString(filter) &&
+      filter &&
+      context.$isString(and) &&
+      and
+    ) {
+      backTo +=
+        '?start=' + start + '&end=' + end + '&filter=' + filter + '&and=' + and
+    }
     const event = await axios
       .get('https://api.vrcec-viewer.rioil.dev?gcal_id=' + gcalId)
       .then((response) => {
@@ -93,7 +114,7 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-    return { gcalId, event }
+    return { gcalId, event, backTo }
   },
   head: {
     title: 'イベント詳細',

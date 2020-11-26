@@ -21,6 +21,7 @@ export default {
     '~/plugins/html_sanitize.ts',
     '~/plugins/auto_link.ts',
     '~/plugins/parse_genre.ts',
+    '~/plugins/is_string.ts',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

@@ -59,7 +59,7 @@
         <v-col cols="auto">Filter</v-col>
         <!--
         <v-col cols="auto">
-          <v-switch v-model="andFilter" label="AND"></v-switch>
+          <v-switch v-model="and" label="AND"></v-switch>
         </v-col>-->
         <v-col cols="auto">
           <v-btn
@@ -69,9 +69,9 @@
             @click="toggleFilterMode"
           >
             <v-icon>
-              {{ andFilter ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off' }}
+              {{ and ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off' }}
             </v-icon>
-            {{ andFilter ? 'AND' : 'OR' }}
+            {{ and ? 'AND' : 'OR' }}
           </v-btn>
         </v-col>
         <v-col cols="auto">
@@ -85,17 +85,17 @@
             v-for="genre in genres"
             :key="genre.name"
             :class="`genre-tag ${
-              (tagFlag & genre.flag) === 0
+              (filter & genre.flag) === 0
                 ? 'genre-not-selected'
                 : 'genre-selected'
             }`"
             :style="`background-color: ${
-              (tagFlag & genre.flag) === 0 ? 'transparent' : genre.color
+              (filter & genre.flag) === 0 ? 'transparent' : genre.color
             };`"
           >
             <a
               :style="`color: ${
-                (tagFlag & genre.flag) !== 0 ? 'white' : '#777777'
+                (filter & genre.flag) !== 0 ? 'white' : '#777777'
               };`"
               @click="tag(genre)"
             >
@@ -110,7 +110,7 @@
         <v-col cols="auto">Filtered by : </v-col>
         <v-col cols="auto">
           <span
-            v-for="genre in $parse_genre(tagFlag)"
+            v-for="genre in $parse_genre(filter)"
             :key="genre.name"
             class="genre-tag"
             :style="`background-color: ${genre.color};`"
@@ -177,15 +177,19 @@
               -->
 
               <template #item.details="{ item }">
-                <v-btn icon :to="`/event/${item.gcal_id}`">
+                <v-btn
+                  icon
+                  :to="`/event/${
+                    item.gcal_id
+                  }?start=${dataStart}&end=${dataEnd}&filter=${filter}&and=${Number(
+                    and
+                  )}`"
+                >
                   <v-icon>mdi-book-open-outline</v-icon>
                 </v-btn>
               </template>
             </v-data-table>
           </v-card>
-        </v-col>
-        <v-col>
-          <p>{{ $route.query.id }}</p>
         </v-col>
       </v-row>
     </v-main>
@@ -210,12 +214,20 @@ export default {
 
     let start = formatDate(now)
     let end = formatDate(oneWeekLater)
+    let filter = 0
+    let and = true
 
     if ('start' in query) {
       start = query.start
     }
     if ('end' in query) {
       end = query.end
+    }
+    if ('filter' in query) {
+      filter = Number(query.filter)
+    }
+    if ('and' in query) {
+      and = Boolean(Number(query.and))
     }
 
     const url =
@@ -230,6 +242,8 @@ export default {
           events: response.data.events,
           dataStart: start,
           dataEnd: end,
+          filter,
+          and,
         }
       })
       .catch((error) => {
@@ -274,8 +288,6 @@ export default {
       ],
       sortDesc: [false],
       search: null,
-      tagFlag: 0,
-      andFilter: true,
       loading: false,
       genres: [
         {
@@ -331,15 +343,15 @@ export default {
   },
   computed: {
     filteredEvents() {
-      if (this.tagFlag === 0) {
+      if (this.filter === 0) {
         return this.events
-      } else if (this.andFilter) {
+      } else if (this.and) {
         return this.events.filter((e) => {
-          return (e.genre & this.tagFlag) === this.tagFlag
+          return (e.genre & this.filter) === this.filter
         })
       } else {
         return this.events.filter((e) => {
-          return (e.genre & this.tagFlag) !== 0
+          return (e.genre & this.filter) !== 0
         })
       }
     },
@@ -347,13 +359,13 @@ export default {
   methods: {
     tag(tag) {
       // フラグ更新
-      this.tagFlag ^= tag.flag
+      this.filter ^= tag.flag
     },
     toggleFilterMode() {
-      this.andFilter = !this.andFilter
+      this.and = !this.and
     },
     resetFilter() {
-      this.tagFlag = 0
+      this.filter = 0
     },
     async updateData() {
       this.loading = true
