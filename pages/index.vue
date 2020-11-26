@@ -147,6 +147,7 @@
               :sort-desc="sortDesc"
               :loading="loading"
               loading-text="Loading..."
+              @click:row="eventRowClicked"
             >
               <template #item.genre="{ item }">
                 <span
@@ -156,7 +157,7 @@
                   :style="`background-color: ${genre.color};`"
                 >
                   <small>
-                    <a class="genre-tag-text" @click="tag(genre)">
+                    <a class="genre-tag-text" @click.stop="tag(genre)">
                       {{ genre.name }}
                     </a>
                   </small>
@@ -177,9 +178,30 @@
               -->
 
               <template #item.details="{ item }">
-                <v-btn icon :to="`/event/${item.gcal_id}?${backToQueryParams}`">
-                  <v-icon>mdi-book-open-outline</v-icon>
-                </v-btn>
+                <v-tooltip
+                  left
+                  color="blue-grey"
+                  max-width="400"
+                  :v-if="!item.description"
+                >
+                  <template #activator="{ on, attrs }">
+                    <!--
+                    <v-btn icon :to="`/event/${item.gcal_id}?${backToQueryParams}`">
+                      <v-icon>mdi-book-open-outline</v-icon>
+                    </v-btn>
+                    -->
+                    <v-btn
+                      v-if="item.description"
+                      icon
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon>mdi-book-open-outline</v-icon>
+                    </v-btn>
+                  </template>
+
+                  <span v-html="$sanitize(item.description)"></span>
+                </v-tooltip>
               </template>
             </v-data-table>
           </v-card>
@@ -392,6 +414,11 @@ export default {
         })
 
       this.loading = false
+    },
+    eventRowClicked(event) {
+      this.$router.push(
+        '/event/' + event.gcal_id + '?' + this.backToQueryParams
+      )
     },
   },
 }
