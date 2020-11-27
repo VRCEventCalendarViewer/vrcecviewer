@@ -70,6 +70,7 @@
             </v-btn>
             <v-btn
               :href="`https://www.google.com/calendar/event?eid=${event.link}`"
+              rel="noopener"
               target="_blank"
             >
               <v-icon>mdi-calendar</v-icon>

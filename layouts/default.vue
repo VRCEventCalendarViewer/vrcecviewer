@@ -8,7 +8,7 @@
           <v-btn
             v-for="link in links"
             :key="link.name"
-            :href="link.url"
+            :to="link.url"
             color="white"
             text
             rounded
@@ -34,6 +34,7 @@
               <v-list-item
                 href="https://forms.gle/TdjRg9goXDQTbhM49"
                 target="_blank"
+                rel="noopener"
               >
                 <v-list-item-content>
                   <v-list-item-title>
@@ -42,7 +43,11 @@
                 </v-list-item-content>
               </v-list-item>
 
-              <v-list-item href="https://twitter.com/rioil_dev" target="_blank">
+              <v-list-item
+                href="https://twitter.com/rioil_dev"
+                target="_blank"
+                rel="noopener"
+              >
                 <v-list-item-content>
                   <v-list-item-title>
                     緊急のお問い合わせ （Twitter DM）
@@ -58,6 +63,7 @@
               <a
                 href="https://sites.google.com/view/vrchat-event"
                 target="_blank"
+                rel="noopener"
               >
                 VRChatイベントカレンダー
               </a>

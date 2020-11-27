@@ -14,7 +14,9 @@ const autoLink = (str: string) => {
     _h: string,
     href: string
   ) {
-    return '<a href="h' + href + '" target="_blank">' + url + '</a>'
+    return (
+      '<a href="h' + href + '" target="_blank" rel="noopener">' + url + '</a>'
+    )
   }
 
   return str.replace(regexpUrl, regexpMakeLink)

@@ -10,6 +10,7 @@
               <a
                 href="https://sites.google.com/view/vrchat-event"
                 target="_blank"
+                rel="noopener"
               >
                 VRChatイベントカレンダー
               </a>
@@ -24,6 +25,7 @@
               <a
                 href="https://sites.google.com/view/vrchat-event"
                 target="_blank"
+                rel="noopener"
               >
                 VRChatイベントカレンダー
               </a>
@@ -31,6 +33,7 @@
               <a
                 href="https://sites.google.com/view/vrchat-event/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E4%BA%8C%E6%AC%A1%E5%88%A9%E7%94%A8%E6%96%B9%E9%87%9D"
                 target="_blank"
+                rel="noopener"
               >
                 イベントデータ二次利用方針
               </a>
@@ -42,7 +45,11 @@
             <v-card-title>当サイトからのデータ取得</v-card-title>
             <v-card-text>
               当サイトはデータを
-              <a href="https://developers.google.com/calendar" target="_blank">
+              <a
+                href="https://developers.google.com/calendar"
+                target="_blank"
+                rel="noopener"
+              >
                 Google Calendar API
               </a>
               を用いて取得し，各種機能の提供のために加工しています．<br />
@@ -57,11 +64,16 @@
               <a
                 href="https://sites.google.com/view/vrchat-event"
                 target="_blank"
+                rel="noopener"
               >
                 VRChatイベントカレンダー
               </a>
               に登録されたイベントデータの内容の修正依頼等は，カッコウ様
-              <a href="https://twitter.com/nest_cuckoo_" target="_blank">
+              <a
+                href="https://twitter.com/nest_cuckoo_"
+                target="_blank"
+                rel="noopener"
+              >
                 @nest_cuckoo_
               </a>
               にお願いします．
