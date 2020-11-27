@@ -177,7 +177,10 @@
               </template>
               -->
 
-              <template #item.details="{ item }">
+              <template
+                v-if="!this.$vuetify.breakpoint.xs"
+                #item.details="{ item }"
+              >
                 <v-tooltip
                   left
                   color="blue-grey"
@@ -202,6 +205,11 @@
 
                   <span v-html="$sanitize(item.description)"></span>
                 </v-tooltip>
+              </template>
+              <template v-else #item.details="{ item }">
+                <v-btn icon :to="`/event/${item.gcal_id}?${backToQueryParams}`">
+                  <v-icon>mdi-book-open-outline</v-icon>
+                </v-btn>
               </template>
             </v-data-table>
           </v-card>
@@ -416,6 +424,10 @@ export default {
       this.loading = false
     },
     eventRowClicked(event) {
+      if (this.$vuetify.breakpoint.xs) {
+        // スマホの場合は行クリックでも詳細ページに飛ばない（誤クリック防止）
+        return
+      }
       this.$router.push(
         '/event/' + event.gcal_id + '?' + this.backToQueryParams
       )
