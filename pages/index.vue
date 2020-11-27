@@ -1,24 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <!--
-        <p>
-          <table>
-            <tr>
-              <th>Summary</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Note</th>
-            </tr>
-            <tr v-for="event in events" :key="event.id">
-              <td>{{ event.summary }}</td>
-              <td>{{ event.start }}</td>
-              <td>{{ event.end }}</td>
-              <td><div v-html="$sanitize(event.note)"></div></td>
-            </tr>
-          </table>
-        </p>
-        -->
+      <!--期間指定-->
       <v-row align="center">
         <v-col cols="auto">
           <v-text-field
@@ -55,12 +38,9 @@
         </v-col>
       </v-row>
 
+      <!--タグ条件指定-->
       <v-row align="center">
         <v-col cols="auto">Filter</v-col>
-        <!--
-        <v-col cols="auto">
-          <v-switch v-model="and" label="AND"></v-switch>
-        </v-col>-->
         <v-col cols="auto">
           <v-btn
             small
@@ -105,26 +85,7 @@
         </v-col>
       </v-row>
 
-      <!--
-      <v-row>
-        <v-col cols="auto">Filtered by : </v-col>
-        <v-col cols="auto">
-          <span
-            v-for="genre in $parseGenre(filter)"
-            :key="genre.name"
-            class="genre-tag"
-            :style="`background-color: ${genre.color};`"
-          >
-            <small>
-              <a class="genre-tag-text" @click="tag(genre)">
-                {{ genre.name }}
-              </a>
-            </small>
-          </span>
-        </v-col>
-      </v-row>
-      -->
-
+      <!--イベントデータ表示-->
       <v-row>
         <v-col cols="12">
           <v-card>
@@ -167,15 +128,6 @@
               <template #item.organizer="{ item }">
                 <div v-html="$sanitize(item.organizer)"></div>
               </template>
-              <!--
-              <template v-slot:item.link="{ item }">
-                <a
-                  :href="`https://www.google.com/calendar/event?eid=${item.link}`"
-                  target="_blank"
-                  ><v-icon>mdi-calendar</v-icon>
-                </a>
-              </template>
-              -->
 
               <template
                 v-if="!this.$vuetify.breakpoint.xs"
@@ -228,6 +180,12 @@ export default {
     DatePicker,
   },
   asyncData({ _params, query }) {
+    /**
+     * デフォルトはこれから1週間のイベント情報を取得
+     * クエリに期間が指定されていればその期間で取得
+     *
+     * クエリからフィルター条件を読み取って返す
+     */
     const now = new Date()
     const oneWeekLater = new Date(
       now.getFullYear(),

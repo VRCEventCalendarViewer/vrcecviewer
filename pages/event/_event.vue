@@ -86,6 +86,11 @@ import axios from 'axios'
 
 export default {
   async asyncData(context) {
+    /**
+     * クエリで指定されたIDのイベント情報を取得
+     *
+     * 検索ページに戻るための情報もクエリから取得して設定
+     */
     const gcalId = context.params.event
     const start = context.query.start
     const end = context.query.end
