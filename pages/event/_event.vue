@@ -11,7 +11,7 @@
             <span class="tags-outside">
               <span class="tags-inside">
                 <span
-                  v-for="genre in $parse_genre(event.genre)"
+                  v-for="genre in $parseGenre(event.genre)"
                   :key="genre.name"
                   class="genre-tag"
                   :style="`background-color: ${genre.color};`"

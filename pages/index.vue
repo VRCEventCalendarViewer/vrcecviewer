@@ -82,7 +82,7 @@
 
         <v-col cols="auto">
           <span
-            v-for="genre in genres"
+            v-for="genre in $getGenres()"
             :key="genre.name"
             :class="`genre-tag ${
               (filter & genre.flag) === 0
@@ -110,7 +110,7 @@
         <v-col cols="auto">Filtered by : </v-col>
         <v-col cols="auto">
           <span
-            v-for="genre in $parse_genre(filter)"
+            v-for="genre in $parseGenre(filter)"
             :key="genre.name"
             class="genre-tag"
             :style="`background-color: ${genre.color};`"
@@ -151,7 +151,7 @@
             >
               <template #item.genre="{ item }">
                 <span
-                  v-for="genre in $parse_genre(item.genre)"
+                  v-for="genre in $parseGenre(item.genre)"
                   :key="genre.name"
                   class="genre-tag"
                   :style="`background-color: ${genre.color};`"
@@ -312,53 +312,6 @@ export default {
       sortDesc: [false],
       search: null,
       loading: false,
-      genres: [
-        {
-          flag: 128,
-          name: '初心者向け',
-          color: '#666666',
-        },
-        {
-          flag: 1,
-          name: 'アバター試着会',
-          color: '#660033',
-        },
-        {
-          flag: 2,
-          name: '改変アバター交流会',
-          color: '#660033',
-        },
-        {
-          flag: 8,
-          name: 'VR飲み会',
-          color: '#330066',
-        },
-        {
-          flag: 16,
-          name: '店舗系',
-          color: '#336600',
-        },
-        {
-          flag: 32,
-          name: '音楽',
-          color: '#006633',
-        },
-        {
-          flag: 64,
-          name: 'ロールプレイ',
-          color: '#003366',
-        },
-        {
-          flag: 4,
-          name: 'その他交流会',
-          color: 'black',
-        },
-        {
-          flag: 256,
-          name: '定期',
-          color: 'black',
-        },
-      ],
     }
   },
   head: {
