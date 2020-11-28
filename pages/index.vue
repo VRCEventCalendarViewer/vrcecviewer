@@ -180,7 +180,7 @@ export default {
   components: {
     DatePicker,
   },
-  asyncData({ _params, query }) {
+  asyncData(context) {
     /**
      * デフォルトはこれから1週間のイベント情報を取得
      * クエリに期間が指定されていればその期間で取得
@@ -199,21 +199,21 @@ export default {
     let filter = 0
     let and = true
 
-    if ('start' in query) {
-      start = query.start
+    if ('start' in context.query) {
+      start = context.query.start
     }
-    if ('end' in query) {
-      end = query.end
+    if ('end' in context.query) {
+      end = context.query.end
     }
-    if ('filter' in query) {
-      filter = Number(query.filter)
+    if ('filter' in context.query) {
+      filter = Number(context.query.filter)
     }
-    if ('and' in query) {
-      and = Boolean(Number(query.and))
+    if ('and' in context.query) {
+      and = Boolean(Number(context.query.and))
     }
 
-    const url =
-      'https://api.vrcec-viewer.rioil.dev?start=' + start + '&end=' + end
+    const url = context.$config.apiBaseUrl + '?start=' + start + '&end=' + end
+    console.log(url)
 
     return axios
       .get(url)
@@ -321,7 +321,8 @@ export default {
       this.dataEnd = this.end
 
       const url =
-        'https://api.vrcec-viewer.rioil.dev?start=' +
+        this.$config.apiBaseUrl +
+        '?start=' +
         this.dataStart +
         '&end=' +
         this.dataEnd

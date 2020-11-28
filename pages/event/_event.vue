@@ -114,7 +114,7 @@ export default {
         '?start=' + start + '&end=' + end + '&filter=' + filter + '&and=' + and
     }
     const event = await axios
-      .get('https://api.vrcec-viewer.rioil.dev?gcal_id=' + gcalId)
+      .get(context.$config.apiBaseUrl + '?gcal_id=' + gcalId)
       .then((response) => {
         return response.data.events[0]
       })

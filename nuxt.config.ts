@@ -79,4 +79,11 @@ export default {
     typeCheck: true,
     ignoreNotFoundWarnings: true,
   },
+
+  publicRuntimeConfig: {
+    apiBaseUrl:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8000'
+        : 'https://api.vrcec-viewer.rioil.dev',
+  },
 }
