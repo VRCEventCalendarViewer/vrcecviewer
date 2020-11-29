@@ -33,6 +33,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    // google analytics
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -85,5 +87,10 @@ export default {
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:8000'
         : 'https://api.vrcec-viewer.rioil.dev',
+  },
+
+  // google analytics
+  googleAnalytics: {
+    id: 'G-BPW0V2TYFY',
   },
 }
