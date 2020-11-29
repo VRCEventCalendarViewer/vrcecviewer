@@ -91,6 +91,6 @@ export default {
 
   // google analytics
   googleAnalytics: {
-    id: 'G-BPW0V2TYFY',
+    id: 'UA-155323326-3',
   },
 }
