@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
-    "start": "nuxt-ts start --hostname 0.0.0.0",
+    "start": "nuxt-ts start --hostname 0.0.0.0　--port 3030",
     "generate": "nuxt-ts generate",
     "lint:js": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js"
