@@ -165,6 +165,15 @@
                 </v-btn>
               </template>
             </v-data-table>
+
+            <v-snackbar v-model="showLoadFailed" color="orange" align="center">
+              <span> <v-icon>mdi-alert</v-icon> Failed to load data </span>
+              <template #action="{ attrs }">
+                <v-btn text v-bind="attrs" @click="updateData">
+                  <v-icon>mdi-autorenew</v-icon> Retry
+                </v-btn>
+              </template>
+            </v-snackbar>
           </v-card>
         </v-col>
       </v-row>
@@ -180,7 +189,7 @@ export default {
   components: {
     DatePicker,
   },
-  asyncData(context) {
+  async asyncData(context) {
     /**
      * デフォルトはこれから1週間のイベント情報を取得
      * クエリに期間が指定されていればその期間で取得
@@ -213,24 +222,25 @@ export default {
     }
 
     const url = context.$config.apiBaseUrl + '?start=' + start + '&end=' + end
-    console.log(url)
 
-    return axios
+    const data = await axios
       .get(url)
-      .then((response) => {
-        return {
-          start,
-          end,
-          events: response.data.events,
-          dataStart: start,
-          dataEnd: end,
-          filter,
-          and,
-        }
-      })
+      .then((response) => response.data.events)
       .catch((error) => {
         console.log(error)
       })
+
+    return {
+      start,
+      end,
+      events: data || [],
+      dataStart: data ? start : null,
+      dataEnd: data ? end : null,
+      filter,
+      and,
+      loading: false,
+      showLoadFailed: !data,
+    }
   },
   data() {
     return {
@@ -268,9 +278,11 @@ export default {
           sortable: false,
         },
       ],
+      events: [],
       sortDesc: [false],
       search: null,
-      loading: false,
+      loading: true,
+      showLoadFailed: false,
     }
   },
   head: {
@@ -316,6 +328,8 @@ export default {
     },
     async updateData() {
       this.loading = true
+      this.showLoadFailed = false
+      this.events = []
 
       this.dataStart = this.start
       this.dataEnd = this.end
@@ -327,12 +341,14 @@ export default {
         '&end=' +
         this.dataEnd
 
-      this.events = await axios
-        .get(url)
-        .then((response) => response.data.events)
-        .catch((error) => {
-          console.log(error)
-        })
+      this.events =
+        (await axios
+          .get(url)
+          .then((response) => response.data.events)
+          .catch((error) => {
+            console.log(error)
+            this.showLoadFailed = true
+          })) || []
 
       this.loading = false
     },

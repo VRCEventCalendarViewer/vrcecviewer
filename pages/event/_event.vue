@@ -2,7 +2,25 @@
 <template>
   <v-app>
     <v-main>
-      <v-card>
+      <!--読み込み失敗時のエラー表示-->
+      <v-alert
+        v-if="loadFailed"
+        border="bottom"
+        colored-border
+        type="warning"
+        elevation="2"
+        text
+      >
+        Failed to load data
+        <span class="d-flex justify-end">
+          <v-btn :to="backTo" small>
+            <v-icon>mdi-keyboard-backspace</v-icon> Back
+          </v-btn>
+        </span>
+      </v-alert>
+
+      <!--イベントデータ詳細-->
+      <v-card v-else>
         <v-container>
           <v-card-title>{{ event.summary }}</v-card-title>
 
@@ -121,7 +139,7 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-    return { gcalId, event, backTo }
+    return { gcalId, event, backTo, loadFailed: !event }
   },
   head: {
     title: 'イベント詳細',
