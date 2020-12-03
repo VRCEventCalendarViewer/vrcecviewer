@@ -28,7 +28,7 @@
     "mysql": "^2.18.1",
     "net": "^1.0.2",
     "nuxt": "^2.14.8",
-    "sanitize-html": "^2.1.2",
+    "sanitize-html": "^2.2.0",
     "tls": "^0.0.1"
   },
   "devDependencies": {
