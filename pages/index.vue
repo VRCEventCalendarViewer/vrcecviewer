@@ -62,27 +62,25 @@
         </v-col>
 
         <v-col cols="auto">
-          <span
+          <v-btn
             v-for="genre in $getGenres()"
             :key="genre.name"
+            small
             :class="`genre-tag ${
               (filter & genre.flag) === 0
                 ? 'genre-not-selected'
                 : 'genre-selected'
             }`"
-            :style="`background-color: ${
+            :color="`${
               (filter & genre.flag) === 0 ? 'transparent' : genre.color
+            }`"
+            :style="`color: ${
+              (filter & genre.flag) !== 0 ? 'white' : '#777777'
             };`"
+            @click="tag(genre)"
           >
-            <a
-              :style="`color: ${
-                (filter & genre.flag) !== 0 ? 'white' : '#777777'
-              };`"
-              @click="tag(genre)"
-            >
-              {{ genre.name }}
-            </a>
-          </span>
+            {{ genre.name }}
+          </v-btn>
         </v-col>
       </v-row>
 
@@ -112,18 +110,17 @@
               @click:row="eventRowClicked"
             >
               <template #item.genre="{ item }">
-                <span
+                <v-btn
                   v-for="genre in $parseGenre(item.genre)"
                   :key="genre.name"
+                  x-small
+                  depressed
                   class="genre-tag"
-                  :style="`background-color: ${genre.color};`"
+                  :color="genre.color"
+                  @click.stop="tag(genre)"
                 >
-                  <small>
-                    <a class="genre-tag-text" @click.stop="tag(genre)">
-                      {{ genre.name }}
-                    </a>
-                  </small>
-                </span>
+                  {{ genre.name }}
+                </v-btn>
               </template>
 
               <template #item.organizer="{ item }">
@@ -387,17 +384,7 @@ function zeroPadding(str) {
 
 <style scoped>
 .genre-tag {
-  margin: 1px;
-  padding: 0px 5px;
-  border-radius: 5px;
-  display: inline-block;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.genre-tag-text {
-  color: white;
+  margin: 0px 3px 0px 0px;
 }
 .genre-selected {
   color: transparent;
