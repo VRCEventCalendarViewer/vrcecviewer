@@ -2,6 +2,83 @@
 <template>
   <v-app>
     <v-main>
+      <!--開催中イベント-->
+      <v-row align="center">
+        <v-col cols="12">
+          <v-card>
+            <v-list two-line>
+              <v-subheader>
+                <v-icon small color="red">mdi-checkbox-blank-circle</v-icon>
+                Live ({{ nowEvents.length }})
+              </v-subheader>
+              <v-list-item
+                v-for="nowEvent in nowEvents"
+                :key="nowEvent.id"
+                :to="`/event/${nowEvent.gcal_id}?${backToQueryParams}`"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>{{ nowEvent.summary }}</v-list-item-title>
+                  <v-list-item-subtitle>
+                    <v-row align="center" no-gutters>
+                      <v-col cols="auto"> {{ nowEvent.organizer }}・ </v-col>
+                      <v-col cols="auto">
+                        {{ nowEvent.start }} ~ {{ nowEvent.end }}
+                      </v-col>
+                      <v-spacer></v-spacer>
+                      <v-col cols="auto">
+                        <span>
+                          <v-btn
+                            v-for="genre in $parseGenre(nowEvent.genre)"
+                            :key="genre.name"
+                            x-small
+                            depressed
+                            class="genre-tag"
+                            :color="genre.color"
+                          >
+                            {{ genre.name }}
+                          </v-btn>
+                        </span>
+                      </v-col>
+                    </v-row>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <template v-if="!$vuetify.breakpoint.xs">
+                    <v-tooltip
+                      left
+                      color="blue-grey"
+                      max-width="400"
+                      :v-if="!nowEvent.description"
+                    >
+                      <template #activator="{ on, attrs }">
+                        <v-btn
+                          v-if="nowEvent.description"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon>mdi-book-open-outline</v-icon>
+                        </v-btn>
+                      </template>
+
+                      <span v-html="$sanitize(nowEvent.description)"></span>
+                    </v-tooltip>
+                  </template>
+                  <template v-else>
+                    <v-btn
+                      icon
+                      :to="`/event/${nowEvent.gcal_id}?${backToQueryParams}`"
+                    >
+                      <v-icon>mdi-book-open-outline</v-icon>
+                    </v-btn>
+                  </template>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-col>
+      </v-row>
+
       <!--期間指定-->
       <v-row align="center">
         <v-col cols="auto">
@@ -218,10 +295,24 @@ export default {
       and = Boolean(Number(context.query.and))
     }
 
-    const url = context.$config.apiBaseUrl + '?start=' + start + '&end=' + end
+    const searchUrl =
+      context.$config.apiBaseUrl +
+      context.$config.apiSearchCall +
+      '?start=' +
+      start +
+      '&end=' +
+      end
 
     const data = await axios
-      .get(url)
+      .get(searchUrl)
+      .then((response) => response.data.events)
+      .catch((error) => {
+        console.log(error)
+      })
+
+    const nowUrl = context.$config.apiBaseUrl + context.$config.apiNowCall
+    const nowData = await axios
+      .get(nowUrl)
       .then((response) => response.data.events)
       .catch((error) => {
         console.log(error)
@@ -237,6 +328,7 @@ export default {
       and,
       loading: false,
       showLoadFailed: !data,
+      nowEvents: nowData,
     }
   },
   data() {
@@ -280,6 +372,8 @@ export default {
       search: null,
       loading: true,
       showLoadFailed: false,
+      nowEvents: [],
+      show: false,
     }
   },
   head: {
@@ -331,8 +425,9 @@ export default {
       this.dataStart = this.start
       this.dataEnd = this.end
 
-      const url =
+      const searchUrl =
         this.$config.apiBaseUrl +
+        this.$config.apiSearchCall +
         '?start=' +
         this.dataStart +
         '&end=' +
@@ -340,7 +435,7 @@ export default {
 
       this.events =
         (await axios
-          .get(url)
+          .get(searchUrl)
           .then((response) => response.data.events)
           .catch((error) => {
             console.log(error)
@@ -384,7 +479,7 @@ function zeroPadding(str) {
 
 <style scoped>
 .genre-tag {
-  margin: 0px 3px 0px 0px;
+  margin: 1px 2px 1px 0px;
 }
 .genre-selected {
   color: transparent;

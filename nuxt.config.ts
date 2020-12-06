@@ -85,8 +85,11 @@ export default {
   publicRuntimeConfig: {
     apiBaseUrl:
       process.env.NODE_ENV === 'development'
-        ? 'http://localhost:8000'
-        : 'https://api.vrcec-viewer.rioil.dev',
+        ? 'http://localhost:8000/index.php'
+        : 'https://api.vrcec-viewer.rioil.dev/index.php',
+    apiSearchCall: '/search',
+    apiNowCall: '/now',
+    apiEventCall: '/event',
   },
 
   // google analytics
