@@ -5,10 +5,18 @@ export default {
   head: {
     titleTemplate: '%s - VRChat Event Calendar Viewer',
     title: 'VRChat Event Calendar Viewer',
+    htmlAttrs: {
+      lang: 'ja',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'VRChat Event Calendarに登録されたイベントをジャンルやキーワードで検索できます．',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -35,6 +43,8 @@ export default {
     '@nuxtjs/vuetify',
     // google analytics
     '@nuxtjs/google-analytics',
+    // nuxt-compress
+    'nuxt-compress',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

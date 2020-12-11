@@ -28,10 +28,12 @@
     "mysql": "^2.18.1",
     "net": "^1.0.2",
     "nuxt": "^2.14.11",
+    "nuxt-compress": "^4.1.0",
     "sanitize-html": "^2.2.0",
     "tls": "^0.0.1"
   },
   "devDependencies": {
+    "@mdi/font": "^5.8.55",
     "@nuxt/types": "^2.14.11",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^5.0.0",
