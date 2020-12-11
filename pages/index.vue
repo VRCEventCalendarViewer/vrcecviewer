@@ -14,7 +14,9 @@
             ></v-skeleton-loader>
             <v-list v-show="!nowEventsLoading" two-line>
               <v-subheader>
-                <v-icon small color="red">mdi-checkbox-blank-circle</v-icon>
+                <v-icon x-small left color="red">
+                  mdi-checkbox-blank-circle
+                </v-icon>
                 Live ({{ nowEvents.length }})
               </v-subheader>
               <v-list-item
