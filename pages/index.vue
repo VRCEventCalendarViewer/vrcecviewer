@@ -6,7 +6,13 @@
       <v-row align="center">
         <v-col cols="12">
           <v-card>
-            <v-list two-line>
+            <v-skeleton-loader
+              v-show="nowEventsLoading"
+              class="mx-auto"
+              max-width="300"
+              type="list-item-two-line"
+            ></v-skeleton-loader>
+            <v-list v-show="!nowEventsLoading" two-line>
               <v-subheader>
                 <v-icon small color="red">mdi-checkbox-blank-circle</v-icon>
                 Live ({{ nowEvents.length }})
@@ -182,7 +188,7 @@
               :search="search"
               sort-by="start"
               :sort-desc="sortDesc"
-              :loading="loading"
+              :loading="evetsLoading"
               loading-text="Loading..."
               @click:row="eventRowClicked"
             >
@@ -326,9 +332,10 @@ export default {
       dataEnd: data ? end : null,
       filter,
       and,
-      loading: false,
+      evetsLoading: false,
       showLoadFailed: !data,
       nowEvents: nowData,
+      nowEventsLoading: false,
     }
   },
   data() {
@@ -370,7 +377,8 @@ export default {
       events: [],
       sortDesc: [false],
       search: null,
-      loading: true,
+      evetsLoading: true,
+      nowEventsLoading: true,
       showLoadFailed: false,
       nowEvents: [],
       show: false,
@@ -418,7 +426,7 @@ export default {
       this.filter = 0
     },
     async updateData() {
-      this.loading = true
+      this.evetsLoading = true
       this.showLoadFailed = false
       this.events = []
 
@@ -442,7 +450,7 @@ export default {
             this.showLoadFailed = true
           })) || []
 
-      this.loading = false
+      this.evetsLoading = false
     },
     eventRowClicked(event) {
       if (this.$vuetify.breakpoint.xs) {
