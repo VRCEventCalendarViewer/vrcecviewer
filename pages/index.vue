@@ -3,7 +3,7 @@
   <v-app>
     <v-main>
       <!--開催中イベント-->
-      <v-row align="center">
+      <v-row v-if="nowEvents.length > 0" align="center">
         <v-col cols="12">
           <v-card>
             <v-skeleton-loader
