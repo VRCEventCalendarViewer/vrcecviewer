@@ -22,14 +22,14 @@
               <v-list-item
                 v-for="nowEvent in nowEvents"
                 :key="nowEvent.id"
-                :to="`/event/${nowEvent.gcal_id}?${backToQueryParams}`"
+                @click="eventRowClicked(nowEvent)"
               >
                 <v-list-item-content>
                   <v-list-item-title>{{ nowEvent.summary }}</v-list-item-title>
                   <v-list-item-subtitle>
                     <v-row align="center" no-gutters>
-                      <v-col cols="auto"> {{ nowEvent.organizer }}・ </v-col>
-                      <v-col cols="auto">
+                      <v-col cols="auto"> {{ nowEvent.organizer }}</v-col>
+                      <v-col cols="auto" class="ml-2">
                         {{ nowEvent.start }} ~ {{ nowEvent.end }}
                       </v-col>
                       <v-spacer></v-spacer>
