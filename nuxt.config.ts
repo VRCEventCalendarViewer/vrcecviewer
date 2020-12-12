@@ -31,6 +31,7 @@ export default {
     '~/plugins/parse_genre.ts',
     '~/plugins/parse_platform.ts',
     '~/plugins/is_string.ts',
+    '~/plugins/vuetify.ts',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -73,6 +74,9 @@ export default {
           success: colors.green.accent3,
         },
       },
+    },
+    defaultAssets: {
+      icons: false,
     },
   },
 
