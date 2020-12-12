@@ -29,6 +29,7 @@ export default {
     '~/plugins/html_sanitize.ts',
     '~/plugins/auto_link.ts',
     '~/plugins/parse_genre.ts',
+    '~/plugins/parse_platform.ts',
     '~/plugins/is_string.ts',
   ],
 
