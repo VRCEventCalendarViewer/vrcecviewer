@@ -28,7 +28,7 @@
     "mysql": "^2.18.1",
     "net": "^1.0.2",
     "nuxt": "^2.15.3",
-    "nuxt-compress": "^4.1.0",
+    "nuxt-compress": "^4.1.1",
     "sanitize-html": "^2.3.3",
     "tls": "^0.0.1"
   },
