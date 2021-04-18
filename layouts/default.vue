@@ -61,7 +61,7 @@
             <small>
               このサイトは
               <a
-                href="https://sites.google.com/view/vrchat-event"
+                href="https://vrceve.com/"
                 target="_blank"
                 rel="noopener"
               >

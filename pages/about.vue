@@ -8,7 +8,7 @@
             <v-card-title>このサイトの目的</v-card-title>
             <v-card-text>
               <a
-                href="https://sites.google.com/view/vrchat-event"
+                href="https://vrceve.com/"
                 target="_blank"
                 rel="noopener"
               >
@@ -23,7 +23,7 @@
             <v-card-text>
               当サイトは，カッコウ様が管理されている
               <a
-                href="https://sites.google.com/view/vrchat-event"
+                href="https://vrceve.com/"
                 target="_blank"
                 rel="noopener"
               >
@@ -31,7 +31,7 @@
               </a>
               に登録されたイベントデータを
               <a
-                href="https://sites.google.com/view/vrchat-event/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E4%BA%8C%E6%AC%A1%E5%88%A9%E7%94%A8%E6%96%B9%E9%87%9D"
+                href="https://vrceve.com/policy/"
                 target="_blank"
                 rel="noopener"
               >
@@ -62,7 +62,7 @@
             <v-card-text>
               当サイトに関するお問い合わせは，画面下部にあるCONTACTからお願いします．<br />
               <a
-                href="https://sites.google.com/view/vrchat-event"
+                href="https://vrceve.com/"
                 target="_blank"
                 rel="noopener"
               >
