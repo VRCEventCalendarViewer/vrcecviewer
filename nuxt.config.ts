@@ -15,7 +15,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'VRChatで行われるイベント検索サイトです．VRChatイベントカレンダーに登録されたイベントをジャンルやキーワードで検索できます．',
+          'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
       },
       { hid: 'og:site_name', property: 'og:site_name', content: 'VRChat Event Calendar Viewer' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
@@ -25,7 +25,7 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'VRChatで行われるイベント検索サイトです．VRChatイベントカレンダーに登録されたイベントをジャンルやキーワードで検索できます．',
+          'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
       },
       {
         hid: 'og:image',
