@@ -17,10 +17,22 @@ export default {
         content:
           'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
       },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'VRChat Event Calendar Viewer' },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'VRChat Event Calendar Viewer',
+      },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'https://vrchat-eventcalendar-viewer.server-on.net/' },
-      { hid: 'og:title', property: 'og:title', content: 'VRChat Event Calendar Viewer' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://vrchat-eventcalendar-viewer.server-on.net/',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'VRChat Event Calendar Viewer',
+      },
       {
         hid: 'og:description',
         property: 'og:description',
@@ -30,8 +42,10 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
+        content:
+          'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
       },
+      { name: 'twitter:card', content: 'summary' }, //twitterの画像サイズ，画像と説明が横並びのタイプに設定
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
