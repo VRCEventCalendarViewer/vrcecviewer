@@ -15,7 +15,22 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'VRChat Event Calendarに登録されたイベントをジャンルやキーワードで検索できます．',
+          'VRChatで行われるイベント検索サイトです．VRChatイベントカレンダーに登録されたイベントをジャンルやキーワードで検索できます．',
+      },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'VRChat Event Calendar Viewer' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://vrchat-eventcalendar-viewer.server-on.net/' },
+      { hid: 'og:title', property: 'og:title', content: 'VRChat Event Calendar Viewer' },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'VRChatで行われるイベント検索サイトです．VRChatイベントカレンダーに登録されたイベントをジャンルやキーワードで検索できます．',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
