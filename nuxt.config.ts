@@ -130,7 +130,7 @@ export default {
     apiBaseUrl:
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:8000/index.php'
-        : 'https://api.vrcec-viewer.rioil.dev/index.php',
+        : 'https://api.vrchat-eventcalendar-viewer.server-on.net/index.php',
     apiSearchCall: '/search',
     apiNowCall: '/now',
     apiEventCall: '/event',
