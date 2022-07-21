@@ -29,7 +29,7 @@
     "net": "^1.0.2",
     "nuxt": "^2.15.8",
     "nuxt-compress": "^5.0.0",
-    "sanitize-html": "^2.7.0",
+    "sanitize-html": "^2.7.1",
     "tls": "^0.0.1"
   },
   "devDependencies": {
