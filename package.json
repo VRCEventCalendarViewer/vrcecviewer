@@ -27,7 +27,7 @@
     "fs": "^0.0.1-security",
     "mysql": "^2.18.1",
     "net": "^1.0.2",
-    "nuxt": "^3.17.2",
+    "nuxt": "^3.17.3",
     "nuxt-compress": "^5.0.0",
     "sanitize-html": "^2.16.0",
     "tls": "^0.0.1"
