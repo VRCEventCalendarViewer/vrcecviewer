@@ -136,7 +136,7 @@ export default {
         context.$config.apiBaseUrl +
           context.$config.apiEventCall +
           '?gcal_id=' +
-          gcalId
+          gcalId,
       )
       .then((response) => {
         return response.data.events[0]

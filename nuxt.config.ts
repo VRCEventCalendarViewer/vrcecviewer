@@ -45,7 +45,7 @@ export default {
         content:
           'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
       },
-      { name: 'twitter:card', content: 'summary' }, //twitterの画像サイズ，画像と説明が横並びのタイプに設定
+      { name: 'twitter:card', content: 'summary' }, // twitterの画像サイズ，画像と説明が横並びのタイプに設定
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -72,8 +72,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    // google analytics
-    '@nuxtjs/google-analytics',
+    // google gtag
+    '@nuxtjs/google-gtag',
     // nuxt-compress
     'nuxt-compress',
   ],
@@ -136,8 +136,13 @@ export default {
     apiEventCall: '/event',
   },
 
-  // google analytics
-  googleAnalytics: {
-    id: 'UA-155323326-3',
+  // google gtag (GA4)
+  'google-gtag': {
+    id: 'G-XXXXXXXXXX', // Replace with your GA4 measurement ID
+    config: {
+      anonymize_ip: true,
+      send_page_view: false,
+    },
+    debug: false,
   },
 }

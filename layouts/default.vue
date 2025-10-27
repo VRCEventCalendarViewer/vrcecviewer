@@ -60,11 +60,7 @@
           <v-col class="text-center" cols="12">
             <small>
               このサイトは
-              <a
-                href="https://vrceve.com/"
-                target="_blank"
-                rel="noopener"
-              >
+              <a href="https://vrceve.com/" target="_blank" rel="noopener">
                 VRChatイベントカレンダー
               </a>
               のデータを利用しています． 詳しくは

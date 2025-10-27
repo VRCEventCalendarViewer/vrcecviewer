@@ -212,10 +212,7 @@
                 <div v-html="$sanitize(item.organizer)"></div>
               </template>
 
-              <template
-                v-if="!this.$vuetify.breakpoint.xs"
-                #item.details="{ item }"
-              >
+              <template v-if="!$vuetify.breakpoint.xs" #item.details="{ item }">
                 <v-tooltip
                   left
                   color="blue-grey"
@@ -282,7 +279,7 @@ export default {
     const oneWeekLater = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate() + 8
+      now.getDate() + 8,
     )
 
     let start = formatDate(now)
@@ -460,7 +457,7 @@ export default {
         return
       }
       this.$router.push(
-        '/event/' + event.gcal_id + '?' + this.backToQueryParams
+        '/event/' + event.gcal_id + '?' + this.backToQueryParams,
       )
     },
   },

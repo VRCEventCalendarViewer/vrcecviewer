@@ -7,11 +7,7 @@
           <v-card flat>
             <v-card-title>このサイトの目的</v-card-title>
             <v-card-text>
-              <a
-                href="https://vrceve.com/"
-                target="_blank"
-                rel="noopener"
-              >
+              <a href="https://vrceve.com/" target="_blank" rel="noopener">
                 VRChatイベントカレンダー
               </a>
               に登録されたイベントのキーワードやジャンルによる検索機能を提供し，よりイベントを見つけやすくすることを目的としています．
@@ -22,11 +18,7 @@
             <v-card-title>使用しているデータ</v-card-title>
             <v-card-text>
               当サイトは，カッコウ様が管理されている
-              <a
-                href="https://vrceve.com/"
-                target="_blank"
-                rel="noopener"
-              >
+              <a href="https://vrceve.com/" target="_blank" rel="noopener">
                 VRChatイベントカレンダー
               </a>
               に登録されたイベントデータを
@@ -61,11 +53,7 @@
             <v-card-title>問い合わせ先</v-card-title>
             <v-card-text>
               当サイトに関するお問い合わせは，画面下部にあるCONTACTからお願いします．<br />
-              <a
-                href="https://vrceve.com/"
-                target="_blank"
-                rel="noopener"
-              >
+              <a href="https://vrceve.com/" target="_blank" rel="noopener">
                 VRChatイベントカレンダー
               </a>
               に登録されたイベントデータの内容の修正依頼等は，カッコウ様

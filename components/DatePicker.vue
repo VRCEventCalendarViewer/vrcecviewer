@@ -1,6 +1,6 @@
 <template>
   <v-menu v-model="menu" offset-y :close-on-content-click="false">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn icon color="primary" dark elevation="0" v-on="on">
         <v-icon>mdi-calendar</v-icon>
       </v-btn>
