@@ -35,7 +35,11 @@ const parsePlatform = (platformValue: number) => {
  */
 const getPlatforms = () => platforms
 
-export default ({}, inject: any) => {
-  inject('parsePlatform', parsePlatform)
-  inject('getPlatforms', getPlatforms)
-}
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      parsePlatform,
+      getPlatforms,
+    },
+  }
+})

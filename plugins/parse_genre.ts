@@ -70,7 +70,11 @@ const parseGenre = (genreValue: number) => {
  */
 const getGenres = () => genres
 
-export default ({}, inject: any) => {
-  inject('parseGenre', parseGenre)
-  inject('getGenres', getGenres)
-}
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      parseGenre,
+      getGenres,
+    },
+  }
+})

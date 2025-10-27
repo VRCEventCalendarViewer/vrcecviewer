@@ -1,148 +1,105 @@
-import colors from 'vuetify/es5/util/colors'
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  compatibilityDate: '2025-01-01',
 
-export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    titleTemplate: '%s - VRChat Event Calendar Viewer',
-    title: 'VRChat Event Calendar Viewer',
-    htmlAttrs: {
-      lang: 'ja',
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
+  // Nuxt 3 uses app.head instead of head
+  app: {
+    head: {
+      titleTemplate: '%s - VRChat Event Calendar Viewer',
+      title: 'VRChat Event Calendar Viewer',
+      htmlAttrs: {
+        lang: 'ja',
       },
-      {
-        hid: 'og:site_name',
-        property: 'og:site_name',
-        content: 'VRChat Event Calendar Viewer',
-      },
-      { hid: 'og:type', property: 'og:type', content: 'website' },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: 'https://vrchat-eventcalendar-viewer.server-on.net/',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'VRChat Event Calendar Viewer',
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content:
-          'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content:
-          'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
-      },
-      { name: 'twitter:card', content: 'summary' }, // twitterの画像サイズ，画像と説明が横並びのタイプに設定
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-  },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    '~/plugins/html_sanitize.ts',
-    '~/plugins/auto_link.ts',
-    '~/plugins/parse_genre.ts',
-    '~/plugins/parse_platform.ts',
-    '~/plugins/is_string.ts',
-    '~/plugins/vuetify.ts',
-  ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-    // google gtag
-    '@nuxtjs/google-gtag',
-    // nuxt-compress
-    'nuxt-compress',
-  ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-  ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
-  // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'description',
+          content:
+            'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
         },
-      },
-    },
-    defaultAssets: {
-      icons: false,
+        {
+          property: 'og:site_name',
+          content: 'VRChat Event Calendar Viewer',
+        },
+        { property: 'og:type', content: 'website' },
+        {
+          property: 'og:url',
+          content: 'https://vrchat-eventcalendar-viewer.server-on.net/',
+        },
+        {
+          property: 'og:title',
+          content: 'VRChat Event Calendar Viewer',
+        },
+        {
+          property: 'og:description',
+          content:
+            'VRChatで行われるイベント検索サイトです．イベントをジャンルやキーワードで検索できます．',
+        },
+        {
+          property: 'og:image',
+          content:
+            'https://vrchat-eventcalendar-viewer.server-on.net/ogp/default.png',
+        },
+        { name: 'twitter:card', content: 'summary' }, // twitterの画像サイズ，画像と説明が横並びのタイプに設定
+      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  // Global CSS
+  css: ['@mdi/font/css/materialdesignicons.css'],
+
+  // Nuxt 3 modules (buildModules are now part of modules)
+  modules: ['nuxt-gtag'],
+
+  // Build modules
   build: {
-    extend(config: any, { isClient, _isServer }: any) {
-      if (isClient) {
-        config.node = {
-          fs: 'empty',
-        }
-      }
-    },
+    transpile: ['vuetify'],
   },
 
-  // typescript configuration
-  typescript: {
-    typeCheck: true,
-    ignoreNotFoundWarnings: true,
-  },
-
-  publicRuntimeConfig: {
-    apiBaseUrl:
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:8000/index.php'
-        : 'https://api.vrchat-eventcalendar-viewer.server-on.net/index.php',
-    apiSearchCall: '/search',
-    apiNowCall: '/now',
-    apiEventCall: '/event',
-  },
-
-  // google gtag (GA4)
-  'google-gtag': {
+  // Google gtag (GA4)
+  gtag: {
     id: 'G-XXXXXXXXXX', // Replace with your GA4 measurement ID
     config: {
       anonymize_ip: true,
       send_page_view: false,
     },
-    debug: false,
   },
-}
+
+  // Runtime config (replaces publicRuntimeConfig)
+  runtimeConfig: {
+    public: {
+      apiBaseUrl:
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:8000/index.php'
+          : 'https://api.vrchat-eventcalendar-viewer.server-on.net/index.php',
+      apiSearchCall: '/search',
+      apiNowCall: '/now',
+      apiEventCall: '/event',
+    },
+  },
+
+  // TypeScript configuration
+  typescript: {
+    typeCheck: true,
+    strict: true,
+  },
+
+  // Nitro configuration (server)
+  nitro: {
+    preset: 'node-server',
+  },
+
+  // Vite configuration
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+  },
+
+  // Auto import components
+  components: true,
+
+  devtools: { enabled: true },
+})

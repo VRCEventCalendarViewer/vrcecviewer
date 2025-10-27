@@ -1,4 +1,4 @@
-const sanitizeHtml = require('sanitize-html')
+import sanitizeHtml from 'sanitize-html'
 
 const sanitize = (str: string) => {
   if (str == null) {
@@ -7,6 +7,10 @@ const sanitize = (str: string) => {
   return sanitizeHtml(str)
 }
 
-export default ({}, inject: any) => {
-  inject('sanitize', sanitize)
-}
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      sanitize,
+    },
+  }
+})

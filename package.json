@@ -1,50 +1,43 @@
 {
   "name": "vrc-event-viewer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start --hostname 0.0.0.0 --port 3030",
-    "staging": "nuxt start --hostname 0.0.0.0 --port 3000",
+    "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint:js": "eslint .",
+    "lint": "yarn lint:js",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^2.1.0",
-    "@nuxtjs/axios": "^5.13.6",
+    "@mdi/font": "^7.4.47",
+    "axios": "^1.7.9",
     "core-js": "^3.46.0",
-    "express": "^4.21.2",
-    "mysql": "^2.18.1",
-    "nuxt": "^2.18.1",
-    "nuxt-compress": "^5.0.0",
-    "sanitize-html": "~2.7.3"
+    "mysql2": "^3.11.5",
+    "nuxt": "^3.15.1",
+    "nuxt-gtag": "^3.0.1",
+    "sanitize-html": "^2.17.0",
+    "vue": "^3.5.13",
+    "vuetify": "^3.7.5"
   },
   "devDependencies": {
-    "@mdi/font": "^7.4.47",
-    "@nuxt/types": "^2.18.1",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/eslint-config": "^8.0.0",
-    "@nuxtjs/eslint-config-typescript": "^8.0.0",
-    "@nuxtjs/eslint-module": "^3.1.0",
-    "@nuxtjs/google-gtag": "^1.0.4",
-    "@nuxtjs/vuetify": "^1.12.3",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-nuxt": "^4.0.0",
+    "@nuxt/eslint": "^0.6.0",
+    "@types/node": "^24.9.1",
+    "@types/sanitize-html": "^2.13.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.2.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "sass": "^1.83.0",
+    "typescript": "^5.7.3",
+    "vite-plugin-vuetify": "^2.0.4",
+    "vue-tsc": "^2.2.0"
   }
 }

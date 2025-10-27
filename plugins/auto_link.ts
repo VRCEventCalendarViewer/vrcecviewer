@@ -23,6 +23,10 @@ const autoLink = (str: string) => {
   return str.replace(regexpUrl, regexpMakeLink)
 }
 
-export default ({}, inject: any) => {
-  inject('auto_link', autoLink)
-}
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      auto_link: autoLink,
+    },
+  }
+})

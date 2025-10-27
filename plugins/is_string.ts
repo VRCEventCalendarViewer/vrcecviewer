@@ -1,14 +1,10 @@
-import { Plugin } from '@nuxt/types'
+const isString = (obj: any): boolean =>
+  typeof obj === 'string' || obj instanceof String
 
-declare module '@nuxt/types' {
-  interface Context {
-    $isString(obj: any): boolean
+export default defineNuxtPlugin(() => {
+  return {
+    provide: {
+      isString,
+    },
   }
-}
-
-const isString: Plugin = (context) => {
-  context.$isString = (obj: any) =>
-    typeof obj === 'string' || obj instanceof String
-}
-
-export default isString
+})
